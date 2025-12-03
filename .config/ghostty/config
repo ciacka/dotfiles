@@ -1,0 +1,26 @@
+theme = Catppuccin Mocha
+
+# Background
+background-opacity = 0.97
+background-blur-radius = 25
+
+# Font
+font-family = "Monaspace Neon NF"
+font-size = 15
+
+# Mouse & Scrolling
+mouse-hide-while-typing = true
+scrollback-limit = 10000
+
+# Automatic Update
+auto-update = check
+
+# Style of Titlebar - MacOS specific
+macos-titlebar-style = transparent
+
+# Window Settings
+window-padding-x = 5
+window-padding-y = 5
+window-padding-balance = true
+
+keybind = global:cmd+shift+.=toggle_quick_terminal
