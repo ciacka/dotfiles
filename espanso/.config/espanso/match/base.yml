@@ -1,0 +1,15 @@
+# espanso match file
+
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/dev/schemas/match.schema.json
+
+matches:
+  # Print the current date
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
