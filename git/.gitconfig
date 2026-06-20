@@ -1,0 +1,10 @@
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
+[user]
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAkMQzz/+DCAyz81Pkhug8pWYkrTt0hjEL21S0lDBWYn
+	name = Przemek Ciąćka
+	email = przemek@ciacka.com
