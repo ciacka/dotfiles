@@ -1,3 +1,5 @@
 font-size = 15
 font-family = "JetBrainsMono"
 font-family = "FiraCodeNerdFont"
+
+keybind = opt+backspace=text:\x1b\x7f
