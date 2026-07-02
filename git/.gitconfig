@@ -10,3 +10,6 @@
 	email = przemek@ciacka.com
 [pull]
 	rebase = true
+
+[includeIf "gitdir:~/Projects/**"]
+	path = ~/Projects/.gitconfig
