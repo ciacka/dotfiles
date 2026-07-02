@@ -2,3 +2,8 @@
 
 [settings.ruby]
 compile = false
+
+[tools]
+bun = "latest"
+node = "latest"
+npm = "latest"
