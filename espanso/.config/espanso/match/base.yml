@@ -13,3 +13,6 @@ matches:
         type: date
         params:
           format: "%Y-%m-%d"
+
+  - trigger: ":peq"
+    replace: "Napisz mi jak to rozumiesz. Jakie są Twoje pytania doprecyzowujące?"
