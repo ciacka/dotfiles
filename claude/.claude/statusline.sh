@@ -10,7 +10,7 @@ current_dir=$(echo "$json" | jq -r '.workspace.current_dir')
 context_pct=$(echo "$json" | jq -r '.context_window.used_percentage // 0')
 
 # Extract rate limits (if present)
-rate_pct=$(echo "$json" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+rate_pct=$(echo "$json" | jq -r '.rate_limits.five_hour.used_percentage // empty | round')
 resets_at=$(echo "$json" | jq -r '.rate_limits.five_hour.resets_at // empty')
 
 # Extract folder name
