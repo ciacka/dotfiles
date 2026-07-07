@@ -11,5 +11,5 @@
 [pull]
 	rebase = true
 
-[includeIf "gitdir:~/Projects/**"]
+[includeIf "gitdir:~/Projects/"]
 	path = ~/Projects/.gitconfig
