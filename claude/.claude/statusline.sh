@@ -29,9 +29,9 @@ if [[ -n "$rate_pct" ]] && [[ -n "$resets_at" ]]; then
         # Color rate_pct based on threshold
         colored_pct="$rate_pct%"
         if [[ $rate_pct -ge 90 ]]; then
-            colored_pct="\033[31m${rate_pct}%\033[0m"  # Red
+            colored_pct=$'\033[31m'"${rate_pct}%"$'\033[0m'  # Red
         elif [[ $rate_pct -ge 70 ]]; then
-            colored_pct="\033[38;5;214m${rate_pct}%\033[0m"  # Orange
+            colored_pct=$'\033[38;5;214m'"${rate_pct}%"$'\033[0m'  # Orange
         fi
 
         time_segment=" | ⏱️ ${colored_pct} resets in ${hours}:$(printf "%02d" $minutes)"
