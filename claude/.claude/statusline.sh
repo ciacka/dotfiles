@@ -16,6 +16,17 @@ resets_at=$(echo "$json" | jq -r '.rate_limits.five_hour.resets_at // empty')
 # Extract folder name
 folder=$(basename "$current_dir")
 
+# Extract git branch: prefer worktree info from JSON, fall back to git itself
+branch=$(echo "$json" | jq -r '.worktree.branch // .workspace.git_worktree // empty')
+if [[ -z "$branch" ]]; then
+    branch=$(git -C "$current_dir" branch --show-current 2>/dev/null)
+fi
+
+branch_segment=""
+if [[ -n "$branch" ]]; then
+    branch_segment=" ($(printf '\033[38;5;183m%s\033[0m' "$branch"))"
+fi
+
 # Build time segment (only if rate limits are available)
 time_segment=""
 if [[ -n "$rate_pct" ]] && [[ -n "$resets_at" ]]; then
@@ -39,4 +50,4 @@ if [[ -n "$rate_pct" ]] && [[ -n "$resets_at" ]]; then
 fi
 
 # Output
-printf "📁 %s | 🤖 %s | 🧠 %s%%%s\n" "$folder" "$model" "$context_pct" "$time_segment"
+printf "📁 %s%s | 🤖 %s | 🧠 %s%%%s\n" "$folder" "$branch_segment" "$model" "$context_pct" "$time_segment"
