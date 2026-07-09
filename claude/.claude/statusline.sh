@@ -27,26 +27,30 @@ if [[ -n "$branch" ]]; then
     branch_segment=" ($(printf '\033[38;5;183m%s\033[0m' "$branch"))"
 fi
 
-# Build time segment (only if rate limits are available)
+# Build time segment: always shown, dimmed placeholder until rate limits arrive
 time_segment=""
+delta=0
 if [[ -n "$rate_pct" ]] && [[ -n "$resets_at" ]]; then
     now=$(date +%s)
     delta=$((resets_at - now))
+fi
 
-    if [[ $delta -gt 0 ]]; then
-        hours=$((delta / 3600))
-        minutes=$(((delta % 3600) / 60))
+if [[ -n "$rate_pct" ]] && [[ -n "$resets_at" ]] && [[ $delta -gt 0 ]]; then
+    hours=$((delta / 3600))
+    minutes=$(((delta % 3600) / 60))
 
-        # Color rate_pct based on threshold
-        colored_pct="$rate_pct%"
-        if [[ $rate_pct -ge 90 ]]; then
-            colored_pct=$'\033[31m'"${rate_pct}%"$'\033[0m'  # Red
-        elif [[ $rate_pct -ge 70 ]]; then
-            colored_pct=$'\033[38;5;214m'"${rate_pct}%"$'\033[0m'  # Orange
-        fi
-
-        time_segment=" | ⏱️ ${colored_pct} resets in ${hours}:$(printf "%02d" $minutes)"
+    # Color rate_pct based on threshold
+    colored_pct="$rate_pct%"
+    if [[ $rate_pct -ge 90 ]]; then
+        colored_pct=$'\033[31m'"${rate_pct}%"$'\033[0m'  # Red
+    elif [[ $rate_pct -ge 70 ]]; then
+        colored_pct=$'\033[38;5;214m'"${rate_pct}%"$'\033[0m'  # Orange
     fi
+
+    time_segment=" | ⏱️ ${colored_pct} resets in ${hours}:$(printf "%02d" $minutes)"
+else
+    # Not available yet (e.g. before the first API response of the session): dim placeholder
+    time_segment=$' | \033[2m⏱️ ...\033[0m'
 fi
 
 # Output
