@@ -1,10 +1,8 @@
 shell = "zsh"
 
-[plugins.fzf-tab]
-github = "Aloxaf/fzf-tab"
-
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
+hooks.post = "autoload -Uz compinit && compinit"
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
